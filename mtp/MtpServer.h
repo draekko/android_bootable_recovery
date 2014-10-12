@@ -29,7 +29,6 @@
 #include "mtp.h"
 #include "MtpUtils.h"
 
-
 class MtpDatabase;
 class MtpStorage;
 

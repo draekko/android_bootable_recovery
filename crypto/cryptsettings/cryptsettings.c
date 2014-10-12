@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #ifdef TW_INCLUDE_JB_CRYPTO
-#include "../crypto/fs_mgr/include/fs_mgr.h"
+#include "../../crypto/fs_mgr/include/fs_mgr.h"
 #endif
 
 #include "cutils/properties.h"
