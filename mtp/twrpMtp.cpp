@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 	}
 	printf("starting\n");
 	twmtp_MtpServer* mtp = new twmtp_MtpServer();
-//	mtp->set_storages(storages);
+	mtp->set_storages(storages);
 	mtp->start();
 	return 0;
 }
