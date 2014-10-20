@@ -1733,10 +1733,6 @@ bool TWPartition::Wipe_Data_Without_Wiping_Media() {
 		}
 		closedir(d);
 
-		#ifdef HAVE_SELINUX
-		perms.fixDataInternalContexts();
-		#endif
-
 		gui_print("Done.\n");
 		return true;
 	}
