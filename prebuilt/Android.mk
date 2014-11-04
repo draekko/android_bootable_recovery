@@ -133,7 +133,6 @@ GEN := $(intermediates)/teamwin
 $(GEN): $(RELINK)
 $(GEN): $(RELINK_SOURCE_FILES) $(call intermediates-dir-for,EXECUTABLES,recovery)/recovery
 	$(RELINK) $(TARGET_RECOVERY_ROOT_OUT)/sbin $(RELINK_SOURCE_FILES)
-	$(RELINK) $(call intermediates-dir-for,EXECUTABLES,recovery) $(call intermediates-dir-for,EXECUTABLES,recovery)/recovery
 
 LOCAL_GENERATED_SOURCES := $(GEN)
 LOCAL_SRC_FILES := teamwin $(GEN)
@@ -263,33 +262,6 @@ ifneq ($(TW_EXCLUDE_SUPERSU), true)
 	LOCAL_SRC_FILES := $(LOCAL_MODULE)
 	include $(BUILD_PREBUILT)
 
-	#supolicy binary
-	include $(CLEAR_VARS)
-	LOCAL_MODULE := supolicy
-	LOCAL_MODULE_TAGS := eng
-	LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-	LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/supersu
-	LOCAL_SRC_FILES := $(LOCAL_MODULE)
-	include $(BUILD_PREBUILT)
-
-	#chattr binary
-	include $(CLEAR_VARS)
-	LOCAL_MODULE := chattr
-	LOCAL_MODULE_TAGS := eng
-	LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-	LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/supersu
-	LOCAL_SRC_FILES := $(LOCAL_MODULE)
-	include $(BUILD_PREBUILT)
-
-	#chattr.pie binary
-	include $(CLEAR_VARS)
-	LOCAL_MODULE := chattr.pie
-	LOCAL_MODULE_TAGS := eng
-	LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-	LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/supersu
-	LOCAL_SRC_FILES := $(LOCAL_MODULE)
-	include $(BUILD_PREBUILT)
-
 	#install-recovery.sh
 	include $(CLEAR_VARS)
 	LOCAL_MODULE := install-recovery.sh
@@ -317,40 +289,3 @@ ifneq ($(TW_EXCLUDE_SUPERSU), true)
 	LOCAL_SRC_FILES := $(LOCAL_MODULE)
 	include $(BUILD_PREBUILT)
 endif
-
-#sdcard
-include $(CLEAR_VARS)
-LOCAL_MODULE := sdcard
-LOCAL_MODULE_TAGS := eng
-LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-include $(BUILD_PREBUILT)
-
-ifeq ($(TW_INCLUDE_CRYPTO_SAMSUNG), true)
-    include $(CLEAR_VARS)
-    LOCAL_MODULE := libsec_ecryptfs.so
-    LOCAL_MODULE_TAGS := eng
-    LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-    LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
-    LOCAL_SRC_FILES := $(LOCAL_MODULE)
-    include $(BUILD_PREBUILT)
-
-    include $(CLEAR_VARS)
-    LOCAL_MODULE := libsec_km.so
-    LOCAL_MODULE_TAGS := eng
-    LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-    LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
-    LOCAL_SRC_FILES := $(LOCAL_MODULE)
-    include $(BUILD_PREBUILT)
-
-    include $(CLEAR_VARS)
-    LOCAL_MODULE := libkeyutils.so
-    LOCAL_MODULE_TAGS := eng
-    LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-    LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
-    LOCAL_SRC_FILES := $(LOCAL_MODULE)
-    include $(BUILD_PREBUILT)
-endif
-
-
