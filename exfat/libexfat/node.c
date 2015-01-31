@@ -45,23 +45,23 @@ struct exfat_node* exfat_get_node(struct exfat_node* node)
 void exfat_put_node(struct exfat* ef, struct exfat_node* node)
 {
 	if (--node->references < 0)
-		{
+	{
 		char buffer[UTF8_BYTES(EXFAT_NAME_MAX) + 1];
-			exfat_get_name(node, buffer, sizeof(buffer) - 1);
+		exfat_get_name(node, buffer, sizeof(buffer) - 1);
 		exfat_bug("reference counter of `%s' is below zero", buffer);
-}
+	}
 
 	if (node->references == 0)
-{
+	{
 		/* FIXME handle I/O error */
 		if (exfat_flush_node(ef, node) != 0)
 			exfat_bug("node flush failed");
-	if (node->flags & EXFAT_ATTRIB_UNLINKED)
-	{
-		/* free all clusters and node structure itself */
+		if (node->flags & EXFAT_ATTRIB_UNLINKED)
+		{
+			/* free all clusters and node structure itself */
 			exfat_truncate(ef, node, 0, true);
-		free(node);
-	}
+			free(node);
+		}
 		/* FIXME handle I/O error */
 		if (exfat_flush(ef) != 0)
 			exfat_bug("flush failed");

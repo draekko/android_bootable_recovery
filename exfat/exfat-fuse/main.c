@@ -206,7 +206,7 @@ static int fuse_exfat_unlink(const char* path)
 
 	rc = exfat_unlink(&ef, node);
 	exfat_put_node(&ef, node);
-		return rc;
+	return rc;
 }
 
 static int fuse_exfat_rmdir(const char* path)
@@ -222,7 +222,7 @@ static int fuse_exfat_rmdir(const char* path)
 
 	rc = exfat_rmdir(&ef, node);
 	exfat_put_node(&ef, node);
-		return rc;
+	return rc;
 }
 
 static int fuse_exfat_mknod(const char* path, mode_t mode, dev_t dev)
